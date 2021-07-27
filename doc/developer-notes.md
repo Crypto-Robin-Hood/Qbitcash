@@ -346,7 +346,7 @@ Threads
 
 - DumpAddresses : Dumps IP addresses of nodes to peers.dat.
 
-- ThreadRPCServer : Remote procedure call handler, listens on port 19451 for connections and services them.
+- ThreadRPCServer : Remote procedure call handler, listens on port 910919 for connections and services them.
 
 - Shutdown : Does an orderly shutdown of everything.
 
@@ -356,7 +356,7 @@ Ignoring IDE/editor files
 In closed-source environments in which everyone uses the same IDE it is common
 to add temporary files it produces to the project-wide `.gitignore` file.
 
-However, in open source software such as Bitcoinrand Core, where everyone uses
+However, in open source software such as Qbitcash Core, where everyone uses
 their own editors/IDE/tools, it is less common. Only you know what files your
 editor produces and this may change from version to version. The canonical way
 to do this is thus to create your local gitignore. Add this to `~/.gitconfig`:
