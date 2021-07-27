@@ -76,19 +76,19 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 2300000;
+        consensus.nSubsidyHalvingInterval = 190000;
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0; 
         consensus.BIP66Height = 0; 
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan =  10 * 60;
-        consensus.nPowTargetSpacing = 2 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = false;
+        consensus.nPowTargetTimespan =  100 * 60;
+        consensus.nPowTargetSpacing = 0.5 * 60;
+        consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 5; // 95% of 5
-        consensus.nMinerConfirmationWindow = 5; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 200; // 95% of 200
+        consensus.nMinerConfirmationWindow = 200; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -118,10 +118,10 @@ public:
         pchMessageStart[1] = 0xd8;
         pchMessageStart[2] = 0x54;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = 19452;
+        nDefaultPort = 910919;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1590219311, 790970, 0x1e0ffff0, 1, 230 * COIN);
+        genesis = CreateGenesisBlock(1590219311, 790970, 0x1e0ffff0, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // calculate main genesis block
         //consensus.hashGenesisBlock = uint256S("0x00");
@@ -152,8 +152,7 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("node1.walletbuilders.com");
-        vSeeds.emplace_back("node1.bitcoinrand.com");
+        vSeeds.emplace_back("102.65.131.26");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,61);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,60);
@@ -161,7 +160,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        bech32_hrp = "bzar";
+        bech32_hrp = "qbch";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -183,7 +182,7 @@ public:
         };
 
         /* disable fallback fee on mainnet */
-        m_fallback_fee_enabled = false;
+        m_fallback_fee_enabled = true;
     }
 };
 
@@ -194,19 +193,19 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 2300000;
+        consensus.nSubsidyHalvingInterval = 23000;
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0; 
         consensus.BIP66Height = 0; 
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan =  10 * 60;
-        consensus.nPowTargetSpacing = 2 * 60;
+        consensus.nPowTargetTimespan =  50 * 60;
+        consensus.nPowTargetSpacing = 0.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 4; // 75% for testchains
-        consensus.nMinerConfirmationWindow = 5; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 25; // 75% for testchains
+        consensus.nMinerConfirmationWindow = 100; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -234,7 +233,7 @@ public:
         nDefaultPort = 29452;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1590219316, 74241, 0x1e0ffff0, 1, 230 * COIN);
+        genesis = CreateGenesisBlock(1590219316, 74241, 0x1e0ffff0, 1, 23000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // calculate testnet genesis block
         //consensus.hashGenesisBlock = uint256S("0x00");
@@ -314,7 +313,7 @@ public:
         consensus.nPowTargetSpacing = 2 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
-        consensus.nRuleChangeActivationThreshold = 4; // 75% for testchains
+        consensus.nRuleChangeActivationThreshold = 25; // 75% for testchains
         consensus.nMinerConfirmationWindow = 0; // Faster than normal for regtest (0 instead of 5)
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0;
